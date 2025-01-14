@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 18px; /* Уменьшили на 50% */
+    margin-bottom: 10px;
+}
+
+h1 span {
+    display: block;
+}
+
+.timer-select {
+    margin-bottom: 20px;
+}
+
+select {
+    padding: 5px;
+    font-size: 16px;
+}
+
+.start-button {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #4CAF50; /* Зеленый цвет в той же палитре, что и лососевый */
+    color: white;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.start-button.red {
+    background-color: #FF7F50; /* Лососевый цвет */
+}
+
+.word-display {
+    font-size: 108px; /* Увеличили на 50% */
+    margin-top: 20px;
+    font-weight: bold;
+    color: #1E7A5F; /* Синий в палитре с зеленым и лососевым */
+}
+
+.timer {
+    font-size: 48px;
+    font-weight: bold;
+    color: #1E7A5F; /* Синий в палитре с зеленым и лососевым */
+}
+
+
+
+
+
+
