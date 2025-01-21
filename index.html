@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Поехали!</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Придумай историю</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Выбери персонажа,<span>о котором будет твоя история</span></h1>
-        <div class="timer-select">
-            <label for="timer">Выберите таймер:</label>
-            <select id="timer">
-                <option value="60">60 секунд</option>
-                <option value="90">90 секунд</option>
-                <option value="120">120 секунд</option>
-            </select>
-        </div>
-        <button id="startButton" class="start-button">Поехали</button>
-        <div id="wordDisplay" class="word-display"></div>
+  <div class="container">
+    <h1>Придумай себе любого персонажа</h1>
+    <button id="chooseCharacterButton" class="green-button">Я выбрал!</button>
+
+    <div id="chooseTimeSection" class="hidden">
+      <p class="instruction">Выбери время:</p>
+      <div class="time-buttons">
+        <button id="60secButton" class="time-button">60 сек</button>
+        <button id="90secButton" class="time-button">90 сек</button>
+      </div>
     </div>
-    <script src="script.js"></script>
+
+    <div id="startGameSection" class="hidden">
+      <p class="instruction">Жми на кнопку и сразу начинай рассказывать историю!</p>
+      <button id="startButton" class="green-button">Поехали!</button>
+    </div>
+
+    <div id="wordDisplay" class="word-display hidden"></div>
+    <div id="endMessage" class="end-message hidden">Это было круто!</div>
+  </div>
+
+  <audio id="soundStart" src="start.mp3"></audio>
+  <audio id="soundEnd" src="end.mp3"></audio>
+
+  <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-

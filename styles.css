@@ -2,72 +2,91 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
+  }
+  
+  body {
     font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    background-color: #f0f0f0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    flex-direction: column;
-}
-
-.container {
+    margin: 0;
+  }
+  
+  .container {
     text-align: center;
-    padding: 20px;
-}
-
-h1 {
-    font-size: 18px; /* Уменьшили на 50% */
-    margin-bottom: 10px;
-}
-
-h1 span {
-    display: block;
-}
-
-.timer-select {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .instruction {
+    font-size: 18px;
+    color: #666;
     margin-bottom: 20px;
-}
-
-select {
-    padding: 5px;
-    font-size: 16px;
-}
-
-.start-button {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color: #4CAF50; /* Зеленый цвет в той же палитре, что и лососевый */
+  }
+  
+  .green-button {
+    background-color: #8fbc8f; /* Приглушенно зеленый */
     color: white;
-    font-size: 20px;
     border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 18px;
     cursor: pointer;
-    margin-top: 20px;
-}
-
-.start-button.red {
-    background-color: #FF7F50; /* Лососевый цвет */
-}
-
-.word-display {
-    font-size: 108px; /* Увеличили на 50% */
-    margin-top: 20px;
-    font-weight: bold;
-    color: #1E7A5F; /* Синий в палитре с зеленым и лососевым */
-}
-
-.timer {
+    transition: background-color 0.3s;
+    margin-top: 30px;
+  }
+  
+  .green-button:active {
+    background-color: #fa8072; /* Лососевый цвет */
+  }
+  
+  .time-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .time-button {
+    background-color: #4682b4; /* Приглушенно синий */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .time-button:active {
+    background-color: #fa8072; /* Лососевый цвет */
+  }
+  
+  .word-display {
     font-size: 48px;
+    color: #4682b4; /* Приглушенно синий */
+    margin: 40px 0;
     font-weight: bold;
-    color: #1E7A5F; /* Синий в палитре с зеленым и лососевым */
-}
-
-
-
-
-
-
+  }
+  
+  .end-message {
+    font-size: 36px;
+    color: #333;
+    margin-top: 40px;
+  }

@@ -1,64 +1,117 @@
-const startButton = document.getElementById('startButton');
-const wordDisplay = document.getElementById('wordDisplay');
-const timerSelect = document.getElementById('timer');
+document.addEventListener("DOMContentLoaded", () => {
+  const chooseCharacterButton = document.getElementById("chooseCharacterButton");
+  const chooseTimeSection = document.getElementById("chooseTimeSection");
+  const startGameSection = document.getElementById("startGameSection");
+  const startButton = document.getElementById("startButton");
+  const wordDisplay = document.getElementById("wordDisplay");
+  const endMessage = document.getElementById("endMessage");
+  const soundStart = document.getElementById("soundStart");
+  const soundEnd = document.getElementById("soundEnd");
 
-let timer;
-let timeLeft;
-let timerRunning = false;
-let words = [];
+  const timeButtons = {
+    "60secButton": 60,
+    "90secButton": 90,
+  };
 
-fetch('words.txt') // Замените на путь к вашему текстовому файлу
-    .then(response => response.text())
-    .then(text => {
-        words = text.split('\n').map(word => word.trim()).filter(word => word.length > 0);
+  let words = [];
+  let interval;
+  let timeLeft;
+  let timerRunning = false;
+
+  // Загрузка слов из файла words.txt
+  fetch("words.txt")
+    .then((response) => response.text())
+    .then((data) => {
+      words = data.split("\n").filter((word) => word.trim() !== "");
+    })
+    .catch((error) => console.error("Ошибка загрузки файла:", error));
+
+  // Функция для озвучивания слова
+  function speakWord(word) {
+    if ("speechSynthesis" in window) {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = "ru-RU"; // Устанавливаем язык (русский)
+      utterance.rate = 1; // Скорость речи (1 - нормальная)
+      utterance.pitch = 1; // Высота голоса (1 - нормальная)
+      speechSynthesis.speak(utterance);
+    } else {
+      console.warn("Ваш браузер не поддерживает синтез речи.");
+    }
+  }
+
+  // Обработчик кнопки "Я выбрал!"
+  chooseCharacterButton.addEventListener("click", () => {
+    chooseCharacterButton.style.backgroundColor = "#fa8072"; // Лососевый цвет
+    chooseTimeSection.classList.remove("hidden");
+  });
+
+  // Обработчики кнопок выбора времени
+  Object.keys(timeButtons).forEach((buttonId) => {
+    const button = document.getElementById(buttonId);
+    button.addEventListener("click", () => {
+      // Меняем цвет всех кнопок времени на синий
+      document.querySelectorAll(".time-button").forEach((btn) => {
+        btn.style.backgroundColor = "#4682b4";
+      });
+      // Меняем цвет выбранной кнопки на лососевый
+      button.style.backgroundColor = "#fa8072";
+      timeLeft = timeButtons[buttonId];
+      startGameSection.classList.remove("hidden");
     });
+  });
 
-function startTimer() {
+  // Обработчик кнопки "Поехали!"
+  startButton.addEventListener("click", () => {
     if (timerRunning) return;
 
-    timeLeft = parseInt(timerSelect.value);
+    soundStart.play(); // Звуковой сигнал начала
+    startButton.style.backgroundColor = "#fa8072"; // Лососевый цвет
     timerRunning = true;
-    startButton.classList.add('red');
-    startButton.innerText = ''; // Убираем слово "Время"
-    wordDisplay.innerText = ''; // Убираем старую надпись
-    let count = 0;
-    
-    timer = setInterval(() => {
-        count++;
-        startButton.innerText = count; // Отображаем прямой отсчет времени
+    startButton.textContent = timeLeft;
+    wordDisplay.classList.add("hidden"); // Скрываем слово перед началом игры
 
-        if (count % 10 === 0) {
-            const randomWord = words[Math.floor(Math.random() * words.length)];
-            wordDisplay.innerText = randomWord;
-            wordDisplay.style.fontSize = 'calc(150% + 15%)'; // Увеличиваем на 15%
-        }
+    // Запускаем таймер
+    const timerInterval = setInterval(() => {
+      timeLeft--;
+      startButton.textContent = timeLeft;
 
-        if (count === timeLeft) {
-            clearInterval(timer);
-            startButton.classList.remove('red');
-            startButton.innerText = 'Поехали';
-            wordDisplay.innerText = 'Это было круто!';
-            timerRunning = false;
-        }
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        clearInterval(interval);
+        soundEnd.play(); // Звуковой сигнал окончания
+        startButton.style.backgroundColor = "#8fbc8f"; // Возвращаем зеленый цвет
+        startButton.textContent = "Поехали!";
+        wordDisplay.classList.add("hidden");
+        endMessage.classList.remove("hidden");
+        timerRunning = false;
+      }
     }, 1000);
-}
 
-startButton.addEventListener('click', () => {
-    if (!timerRunning) {
-        startTimer(); // Начинаем игру
-    } else {
-        // Если игра уже идет, сбрасываем ее и начинаем заново
-        clearInterval(timer);
-        wordDisplay.innerText = ''; // Убираем надпись "Это было круто!"
-        startTimer(); // Запускаем игру заново
-    }
+    // Показываем первое слово через 10 секунд
+    setTimeout(() => {
+      if (timeLeft > 0) { // Проверяем, что время не истекло
+        const firstWord = getRandomWord();
+        wordDisplay.textContent = firstWord;
+        wordDisplay.classList.remove("hidden");
+        speakWord(firstWord); // Озвучиваем первое слово
+
+        // Запускаем интервал для следующих слов
+        interval = setInterval(() => {
+          if (timeLeft > 10) { // Не показываем слово на последних 10 секундах
+            const randomWord = getRandomWord();
+            wordDisplay.textContent = randomWord;
+            speakWord(randomWord); // Озвучиваем каждое новое слово
+          } else if (timeLeft <= 10) {
+            wordDisplay.classList.add("hidden"); // Скрываем слово на последних 10 секундах
+          }
+        }, 10000);
+      }
+    }, 10000);
+  });
+
+  // Функция для получения случайного слова
+  function getRandomWord() {
+    const randomIndex = Math.floor(Math.random() * words.length);
+    return words[randomIndex];
+  }
 });
-
-
-
-
-
-
-
-
-
