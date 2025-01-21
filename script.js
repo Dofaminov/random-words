@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       utterance.lang = "ru-RU"; // Устанавливаем язык (русский)
       utterance.rate = 1; // Скорость речи (1 - нормальная)
       utterance.pitch = 1; // Высота голоса (1 - нормальная)
+      utterance.volume = 2; // Увеличиваем громкость в 2 раза (максимум 1, но можно попробовать)
       speechSynthesis.speak(utterance);
     } else {
       console.warn("Ваш браузер не поддерживает синтез речи.");
@@ -64,7 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
   startButton.addEventListener("click", () => {
     if (timerRunning) return;
 
+    // Уменьшаем громкость начального звука в 2 раза
+    soundStart.volume = 0.5; // Громкость 50%
     soundStart.play(); // Звуковой сигнал начала
+
     startButton.style.backgroundColor = "#fa8072"; // Лососевый цвет
     timerRunning = true;
     startButton.textContent = timeLeft;
