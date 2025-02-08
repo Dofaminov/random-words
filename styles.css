@@ -1,92 +1,103 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  
-  .container {
-    text-align: center;
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  h1 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 30px;
-  }
-  
-  .hidden {
-    display: none;
-  }
-  
-  .instruction {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 20px;
-  }
-  
-  .green-button {
-    background-color: #8fbc8f; /* Приглушенно зеленый */
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 50px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 30px;
-  }
-  
-  .green-button:active {
-    background-color: #fa8072; /* Лососевый цвет */
-  }
-  
-  .time-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
-  }
-  
-  .time-button {
-    background-color: #4682b4; /* Приглушенно синий */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .time-button:active {
-    background-color: #fa8072; /* Лососевый цвет */
-  }
-  
-  .word-display {
-    font-size: 48px;
-    color: #4682b4; /* Приглушенно синий */
-    margin: 40px 0;
-    font-weight: bold;
-  }
-  
-  .end-message {
-    font-size: 36px;
-    color: #333;
-    margin-top: 40px;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 500; /* Unbounded Medium */
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Логотип */
+.logo {
+  max-width: 150px; /* Уменьшаем размер логотипа */
+  margin-bottom: 30px; /* Отступ между логотипом и заголовком */
+}
+
+h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.hidden {
+  display: none;
+}
+
+.instruction {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.green-button {
+  background-color: #8fbc8f; /* Приглушенно зеленый */
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 30px;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 400; /* Unbounded Regular */
+}
+
+.green-button:active {
+  background-color: #fa8072; /* Лососевый цвет */
+}
+
+.time-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.time-button {
+  background-color: #4682b4; /* Приглушенно синий */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 500; /* Unbounded Medium */
+}
+
+.time-button:active {
+  background-color: #fa8072; /* Лососевый цвет */
+}
+
+.word-display {
+  font-size: 48px;
+  color: #4682b4; /* Приглушенно синий */
+  margin: 40px 0;
+  font-weight: bold;
+}
+
+.end-message {
+  font-size: 36px;
+  color: #333;
+  margin-top: 40px;
+}
